@@ -1,0 +1,20 @@
+meta http-equiv="content-type" content="text/html; charset=utf-8"
+meta http-equiv="x-ua-compatible" content="ie=edge"
+meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"
+
+- page_title = current_resource.data.title? ? "#{data.site.title} - #{current_resource.data.title}" : data.site.title
+title = page_title
+
+- description = current_resource.data.description || data.site.description
+meta name="description" content=truncate(description, length: 155)
+
+/<!-- Twitter Card data -->
+meta name="twitter:card" value=description
+
+/<!-- Open Graph data -->
+meta property="og:title" content=page_title
+meta property="og:description" content=description
+meta property="og:url" content=current_resource.url
+meta property="og:image" content=(current_resource.data.image || image_url('logo.png'))
+
+= yield_content :meta

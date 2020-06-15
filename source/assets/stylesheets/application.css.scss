@@ -1,0 +1,27 @@
+/*
+ *= require_tree ./blackdoc_theme
+
+ *= require loader
+ *= require utility
+ */
+
+//@import 'chosen';
+
+html, body{
+  font-size: 16px;
+  //height: 100%;
+  //margin: 0;
+}
+
+.sidebar{
+  height: 100%;
+  margin: 0;
+}
+
+.sidebar-sticky{
+  min-height: calc(100% - 115px); // 100% minus height of sidebar-footer
+}
+
+.post-title{
+  text-align: center;
+}

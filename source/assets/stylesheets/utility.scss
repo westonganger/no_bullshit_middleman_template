@@ -1,0 +1,108 @@
+.bold{
+  font-weight:bold !important;
+}
+.text-center{
+  text-align: center;
+}
+.inline{
+  display:inline-block;
+}
+.center-block{
+  display: block;
+  margin: 0 auto;
+}
+.underline {
+  text-decoration:underline;
+}
+.overline {
+  border-top: 1px solid #ddd;
+  margin-top: 10px;
+}
+.space-left {
+  margin-left:5px;
+}
+.space-left2 {
+  margin-left:10px;
+}
+.space-left3 {
+  margin-left:20px;
+}
+.space-left4 {
+  margin-left:40px;
+}
+.space-left5 {
+  margin-left:50px;
+}
+.space-above {
+  margin-top:5px;
+}
+.space-above2 {
+  margin-top:10px;
+}
+.space-above3 {
+  margin-top:20px;
+}
+.space-above4 {
+  margin-top:40px;
+}
+.space-above5 {
+  margin-top:50px;
+}
+.space-right{
+  margin-right:5px;
+}
+.space-right2{
+  margin-right:10px;
+}
+.space-right3{
+  margin-right:20px;
+}
+.space-right4{
+  margin-right:40px;
+}
+.space-right5{
+  margin-right:50px;
+}
+.space-below{
+  margin-bottom:5px;
+}
+.space-below2{
+  margin-bottom:10px;
+}
+.space-below3{
+  margin-bottom:20px;
+}
+.space-below4{
+  margin-bottom:40px;
+}
+.space-below5{
+  margin-bottom:50px;
+}
+.table-text-center{
+  th, td, tr{
+    text-align:center;
+  }
+}
+.table-vcenter td{
+  vertical-align:middle;
+}
+.form-100{
+  input{
+    @extend .input-100
+  }
+}
+.form-90{
+  input{
+    @extend .input-90
+  }
+}
+.input-100{
+  @extend .center-block; 
+  width:100%;
+  margin:0 auto;
+}
+.input-90{
+  @extend .center-block; 
+  width:90%;
+  margin:0 auto;
+}

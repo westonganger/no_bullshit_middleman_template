@@ -1,0 +1,11 @@
+---
+layout: page
+title: Categories
+image: 
+---
+
+section
+  ul style="padding-left:20px"
+    - categories.each do |category|
+      li
+        a href=category_path(category) = category

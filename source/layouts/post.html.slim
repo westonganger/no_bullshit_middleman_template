@@ -1,0 +1,16 @@
+= wrap_layout :application do
+  .post
+    h1.post-title = current_resource.data.title
+    span.post-date
+    = yield
+
+    - unless current_resource.similar_articles.empty?
+      .related.text-center
+        h2.underline Related Posts
+        ul.related-posts
+          - current_resource.similar_articles.first(5).each do |article|
+            li
+              h3
+                a href=article.url = article.data.title
+
+    = disqus

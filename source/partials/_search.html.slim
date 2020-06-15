@@ -1,0 +1,9 @@
+.text-center
+  = input_tag :search_field, placeholder: 'Filter Articles...', id: 'search-field'
+
+#search-results.space-above4
+  hr
+  h2.text-center Loading Articles...
+
+
+= javascript_include_tag 'search'
