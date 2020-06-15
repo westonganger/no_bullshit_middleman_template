@@ -1,29 +1,40 @@
-# No Bulls**t Middleman Site Template
+# No Bulls**t Middleman Template
+
+Template for efficient static website generation using Middleman
 
 ## Tools
 
-- Middleman 4
+- Ruby 2.7
+- Middleman 5.0
 - Slim
-- SCSS
-- Sprockets
-- Favicon Generation
+- Webpack, SCSS, Global jQuery, Turbolinks
 - ImageOptim
-- Disqus
+- Disqus Commenting Integration
+- Favicon Generation
 - middleman-search
 - middleman-blog
-
-## Configuration
-See config.rb and lib/
 
 ## Setup / Development
 
 - bin/setup
 - bundle exec middleman server
 
+## Configuration
+
+The main config is located at `config.rb`
+
+The following additional configuration files are located in the `config/` folder:
+
+- `config/blog.rb` (middleman-blog configuration)
+- `config/deploy.rb` (deployment configuration)
+- `config.proxy_pages.rb` (custom redirects)
+- `config.search.rb` (search configuration)
+
 ## Deployment
 
-- bundle exec middleman deploy
+- Configure settings in config/deploy.rb, by default deploys to Github pages
+- bin/deploy
 
 ## Credits
 
-Created and maintained by [@westonganger](https://github.com/westonganger)
+Created and maintained by Weston Ganger - [@westonganger](https://github.com/westonganger)

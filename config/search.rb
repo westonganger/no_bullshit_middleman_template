@@ -1,3 +1,5 @@
+### https://github.com/westonganger/middleman-search
+
 activate :search do |plugin|
   plugin.resources = ['posts/']
   plugin.index_path = "search.json" #relative path

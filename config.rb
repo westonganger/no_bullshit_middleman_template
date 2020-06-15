@@ -1,52 +1,54 @@
 require 'slim'
 
-require 'lib/constants'
-require 'lib/favicon_map'
-require 'lib/blog'
-require 'lib/search'
-require 'lib/proxy_pages'
-require 'lib/layout_map'
+instance_eval do
+  File.read 'config/blog.rb'
+  File.read 'config/search.rb'
+  File.read 'config/proxy_pages.rb'
+  File.read 'config/deploy.rb'
+end
 
 FLAGS = {
   dev_speedup: false
 }
 
-set :url_root, 'https://22re_tech.westonganger.com'
-set :layout, "page" # other page layouts can be stated in lib/layout_map.rb
+URL = @app.data.site.url
+
+set :url_root, URL
+set :layout, "page"
 set :js_dir, 'assets/javascripts'
 set :css_dir, 'assets/stylesheets'
 set :images_dir, 'assets/images'
 
-Time.zone = "America/Vancouver"
+activate :directory_indexes ### pretty urls, "/" instead of "/index.html"
+activate :alias
+#activate :protect_emails
+
+activate :inline_svg # = inline_svg 'example.svg'
+activate :middleman_simple_thumbnailer, cache_dir: '.tmp/simple-thumbnailer-cache' # = image_tag image, resize_to: '50x50'
 
 activate :disqus do |plugin|
-  plugin.shortname = '22re-tech-westonganger-com'
+  plugin.shortname = URL.split(':').last
 end
 
-# activate :robots, sitemap: "#{config[:url_root]}/sitemap.xml", rules: [
-#   { user_agent: '*', allow: %w[/] } # Allow all
-# ] 
+activate :external_pipeline,
+  name: :webpack,
+  command: (build? ? 'yarn run build' : 'yarn run start'),
+  source: '.tmp/dist',
+  latency: 1
 
-activate :search_engine_sitemap, default_priority: 0.5, default_change_frequency: "weekly"
-activate :spellcheck, dontfail: 1, ignored_exts: ['.css', '.scss','.js'], allow: ['IncorrectWordHere']#, page: "blog/*"
-activate :directory_indexes ### pretty urls
-activate :alias
-activate :protect_emails
-activate :middleman_simple_thumbnailer ### = image_tag image, resize_to: '50x50'
+activate :sitemap, gzip: build?, hostname: URL
 
-activate :autoprefixer do |prefix|
-  prefix.browsers = "defaults"
+activate :sitemap_ping do |config|
+  config.host = URL
+  #config.sitemap_file = 'sitemap.xml'
+  #config.ping_google = true
+  #config.ping_bing true
+  config.after_build = false
 end
 
-activate :sprockets do |plugin|
-  plugin.expose_middleman_helpers = true
-end
-
-if defined? RailsAssets
-  RailsAssets.load_paths.each do |path|
-    sprockets.append_path path
-  end
-end
+activate :robots, sitemap: "#{URL}/sitemap.xml", rules: [
+  { user_agent: '*', allow: %w(/) },
+]
 
 configure :development do
   config[:protocol] = "http://"
@@ -56,29 +58,38 @@ end
 
 # BUILD CONFIG: https://middlemanapp.com/advanced/configuration/#environment-specific-settings
 configure :build do
-  config[:protocol] = url_root.split(":").first
-  config[:host] = url_root.split("//").last
+  config[:protocol] = URL.split(":").first
+  config[:host] = URL.split("//").last
   config[:port] = 80
-  #config[:http_prefix] = "/22re_tech"
+  #config[:http_prefix] = "/blog"
 
   activate :asset_hash
+  activate :gzip
   activate :minify_css
   activate :minify_javascript
-  activate :gzip
-  activate :minify_html
+  activate :minify_html, remove_input_attributes: false
 
   unless FLAGS[:dev_speedup]
     activate :imageoptim, pngout: false, svgo: false
 
-    activate :favicon_maker, icons: FAVICON_MAP
+    ### List from https://github.com/flexbox/codeless/blob/master/config.rb
+    activate :favicon_maker, icons: {
+      "assets/images/_favicon_template.png" => [
+        { icon: 'chrome-touch-icon-192x192.png' },
+        { icon: 'apple-touch-icon.png', size: '152x152' },
+        { icon: 'ms-touch-icon-144x144-precomposed.png', size: '144x144' },
+        { icon: 'favicon-196x196.png' },
+        { icon: 'favicon-160x160.png' },
+        { icon: 'favicon-96x96.png' },
+        { icon: 'favicon-32x32.png' },
+        { icon: 'favicon-16x16.png' },
+        { icon: 'favicon.ico', size: '64x64,32x32,24x24,16x16' },
+      ]
+    }
   end
 end
 
-activate :deploy do |plugin|
-  plugin.deploy_method = :rsync
-  plugin.host = "westonganger.com"
-  plugin.path = "/usr/share/nginx/html/22re_tech"
-  plugin.user = 'weston'
-  plugin.clean = true
-  plugin.build_before = true
-end
+## Per-page layout changes - https://middlemanapp.com/basics/layouts/ 
+page '/*.xml', layout: false
+page '/*.json', layout: false
+page '/*.txt', layout: false

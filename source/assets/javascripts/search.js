@@ -1,5 +1,3 @@
-//= require lunr.min
-
 var lunrIndex = null;
 var lunrData  = null;
 

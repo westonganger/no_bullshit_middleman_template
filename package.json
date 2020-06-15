@@ -1,0 +1,39 @@
+{
+  "name": "middleman_template",
+  "version": "1.0.0",
+  "author": "Weston Ganger <weston@westonganger.com>",
+  "license": "MIT",
+  "scripts": {
+    "test": "mocha --require test/helpers/dom.js --compilers js:babel-core/register",
+    "start": "NODE_ENV=development webpack --watch -d --color",
+    "build": "NODE_ENV=production webpack --bail -p"
+  },
+  "postcss": {
+    "plugins": {
+      "autoprefixer": {}
+    }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions"
+  ],
+  "dependencies": {
+    "@babel/core": "^7.10.2",
+    "@rails/ujs": "^6.0.3-1",
+    "autoprefixer": "^9.1.1",
+    "babel-eslint": "^7.2.3",
+    "babel-loader": "^8.1.0",
+    "babel-preset-env": "^1.7.0",
+    "css-loader": "^0.28.5",
+    "extract-text-webpack-plugin": "^3.0.0",
+    "jquery": "^3.5.1",
+    "node-sass": "^4.5.3",
+    "postcss-loader": "^2.0.6",
+    "sass-loader": "^6.0.6",
+    "sinon": "^3.2.1",
+    "style-loader": "^0.23.1",
+    "turbolinks": "^5.2",
+    "webpack": "^3.5.5",
+    "webpack-bundle-analyzer": "^3.8.0"
+  }
+}

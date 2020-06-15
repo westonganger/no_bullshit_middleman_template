@@ -8,7 +8,7 @@
       .related.text-center
         h2.underline Related Posts
         ul.related-posts
-          - current_resource.similar_articles.first(5).each do |article|
+          /- current_resource.similar_articles.first(5).each do |article|
             li
               h3
                 a href=article.url = article.data.title

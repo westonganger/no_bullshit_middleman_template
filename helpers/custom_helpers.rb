@@ -11,7 +11,11 @@ module CustomHelpers
     root_url + image_path(path)
   end
 
+  def host_url(url)
+    data.settings.site.url + url
+  end
+
   def categories
-    blog.articles.map{|x| x.data.category}.uniq.compact
+    #blog.articles.map{|x| x.data.category}.uniq.compact
   end
 end

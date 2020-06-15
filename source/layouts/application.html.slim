@@ -1,50 +1,26 @@
 doctype html
 html
   head
-    = partial 'partials/metadata'
+    = partial 'shared/metadata'
 
     = yield_content :head
 
-    = stylesheet_link_tag "application", 'data-turbolinks-track' => 'reload'
-    link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface|EB+Garamond"
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => 'reload'
+    = partial 'shared/asset', locals: {name: 'bootstrap', version: '4.4.1', only_css: true}
+    = partial 'shared/asset', locals: {name: 'froala-design-blocks'}
 
-    = javascript_include_tag "application", 'data-turbolinks-track' => 'reload'
+    = partial 'shared/asset', locals: {name: 'jquery', version: '3.5.1'}
+    = partial 'shared/asset', locals: {name: 'bootstrap', version: '4.4.1', only_js: true}
+    = partial 'shared/asset', locals: {name: 'autosize'}
 
-  body
-    = partial 'partials/loader'
+    link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i"
 
-    .sidebar
-      .container.sidebar-sticky
-        .sidebar-about
-          h1
-            a href=root_url = data.site.title
-          p.lead = data.site.description
+    = partial 'shared/icons', locals: {name: 'font-awesome-4'}
 
-        nav.sidebar-nav
-          a.sidebar-nav-item class=('active' if current_resource.url == '/') href=root_url Home
-          a.sidebar-nav-item class=('active' if current_resource.url == '/my_build/') href=absolute_url('/my_build') My Build
-          a.sidebar-nav-item class=('active' if current_resource.url == '/request_article/') href=absolute_url('/request_article') Request Article
+    = javascript_include_tag 'application.bundle', 'data-turbolinks-track' => 'reload'
 
-          br
+  body.d-flex.flex-column.h-100.has-sticky-footer#page-top
+    = partial 'shared/loader'
 
-          a.sidebar-nav-item class=('active' if current_resource.url == '/categories/') href=absolute_url('/categories') style="text-decoration: underline; font-weight: bold" Categories
-          - categories.each do |category|
-            a.sidebar-nav-item class=('active' if current_resource.url.include?(category_path(category))) href=category_path(category) = category
-
-        .push
-
-      .sidebar-footer
-        form action="/search" method="GET"
-          input name="search_text" placeholder="Search Articles..." style="width:90%; display: block; margin: 0 auto;"
-
-        hr
-        p 
-          | &copy; Weston Ganger 2018#{ " - #{Time.now.year}" if Time.now.year != 2018 }
-          br
-          a href="https://westonganger.com" style="color:inherit;" https://westonganger.com
-
-    .container.content
+    #page-content
       = yield
-
-    - if app.development?
-      a href="/__middleman/" style="position:fixed; bottom: 10px; right: 10px;" Middleman Sitemap / Configuration
