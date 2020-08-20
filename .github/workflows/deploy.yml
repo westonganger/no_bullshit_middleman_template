@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - run: "GIT_BRANCH=${{github.event.inputs.branch}} $/bin/deploy.sh"
+    - run: "GIT_BRANCH=${{github.event.inputs.branch}} ./bin/deploy.sh"
       shell: bash
 
     # - name: Deploy via Webhook

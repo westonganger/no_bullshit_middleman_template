@@ -5,9 +5,9 @@ on:
     ref: ""
 
 jobs:
-  test_commentary:
+  build:
     runs-on: ubuntu-latest
 
     steps:
-    - run: "$/bin/build.sh && git add -A && git commit -m 'Build triggered by Github Actions' && git push origin ${GITHUB_REF##*/}"
+    - run: "./bin/build.sh && git add -A && git commit -m 'Build triggered by Github Actions' && git push origin ${GITHUB_REF##*/}"
       shell: bash
