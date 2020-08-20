@@ -8,11 +8,8 @@ activate :deploy do |plugin|
   plugin.host = "westonganger.com"
   plugin.user = 'weston'
 
-  case ENV['GIT_BRANCH']
-  when 'master'
-    plugin.path = "/usr/share/nginx/html/middleman_template/test/"
-  when 'production'
-    plugin.path = "/usr/share/nginx/html/middleman_template/production/"
+  if ENV['GIT_BRANCH'].present?
+    plugin.path = "/usr/share/nginx/html/middleman_template/#{ENV['GIT_BRANCH']}/"
   else
     raise "Could not deploy. Please define ENV['GIT_BRANCH']"
   end
