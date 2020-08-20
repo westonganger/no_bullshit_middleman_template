@@ -10,6 +10,9 @@ name: Deploy
 
 on: 
   workflow_dispatch:
+  release:
+    type: [ published ]
+    branches: [ production ]
 
 jobs:
   deploy:
