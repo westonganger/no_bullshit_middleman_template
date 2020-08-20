@@ -12,5 +12,5 @@ jobs:
     - uses: actions/setup-ruby@v1
       with:
         ruby-version: '2.7'
-    - run: "echo $PWD && ls -al && ./bin/build.sh && git add -A && git commit -m 'Build triggered by Github Actions' && git push origin ${GITHUB_REF##*/}"
+    - run: "cd .. && echo $PWD && ls -al && ./bin/build.sh && git add -A && git commit -m 'Build triggered by Github Actions' && git push origin ${GITHUB_REF##*/}"
       shell: bash
