@@ -14,11 +14,6 @@ Template for efficient static website generation using Middleman
 - middleman-search
 - middleman-blog
 
-## Setup / Development
-
-- bin/setup
-- bundle exec middleman server
-
 ## Configuration
 
 The main config is located at `config.rb`
@@ -30,10 +25,15 @@ The following additional configuration files are located in the `config/` folder
 - `config.proxy_pages.rb` (custom redirects)
 - `config.search.rb` (search configuration)
 
+## Setup / Installation / Development
+
+- bin/setup
+- bundle exec middleman server
+
 ## Deployment
 
 - Configure settings in config/deploy.rb, by default deploys to Github pages
-- bin/deploy
+- bin/deploy.sh OR use provided Github action
 
 ## Credits
 

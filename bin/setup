@@ -1,5 +1,0 @@
-#!/usr/bin/env ruby
-
-`bundle check || bundle install`
-
-`yarn install`

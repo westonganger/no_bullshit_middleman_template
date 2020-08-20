@@ -2,9 +2,11 @@
 .cache
 .DS_Store
 .sass-cache
-build/
 tmp/
 .tmp/
 .similar.db
 node_modules/
 .yarn-error.log
+
+### Keep build folder so that customer can deploy without build process
+#build/

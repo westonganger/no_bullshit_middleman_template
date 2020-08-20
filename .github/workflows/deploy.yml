@@ -1,0 +1,26 @@
+name: Deploy
+
+# on:
+  # schedule:
+  #   # * is a special character in YAML so you have to quote this string
+  #   - cron:  '*/15 * * * *'
+  # release:
+  #   type: [ published ]
+  #   branches: [ master, staging ]
+
+env:
+  GIT_BRANCH: ${GITHUB_REF##*/}
+
+jobs:
+  build_and_deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - run: "$/bin/deploy.sh"
+      shell: bash
+
+    # - name: Deploy via Webhook
+    #   uses: distributhor/workflow-webhook
+    #   with:
+    #     url: "https://solidfoundationwebdev.com/services/deploy.json"
+    #     json: '{ "repo_url": "${{github.event.repository.html_url}}", "branch": "${{GITHUB_REF##*/}}", "api_key": "vUFTJabmNeSMMKRT82KoJpwR" }'
