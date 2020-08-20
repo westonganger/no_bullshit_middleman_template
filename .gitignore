@@ -10,3 +10,4 @@ node_modules/
 
 ### Keep build folder so that customer can deploy without build process
 #build/
+#docs/ ### build/ alternative for gh-pages

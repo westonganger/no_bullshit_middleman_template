@@ -18,7 +18,8 @@ gem 'middleman-blog'
 gem 'middleman-blog-similar', git: "https://github.com/westonganger/middleman-blog-similar.git"
 gem 'middleman-favicon-maker', git: "https://github.com/westonganger/middleman-favicon-maker.git"
 gem 'middleman-alias' # https://github.com/Octo-Labs/middleman-alias
-gem 'middleman-sitemap', git: 'https://github.com/matsu911/middleman-sitemap'
+#gem 'middleman-sitemap', git: 'https://github.com/matsu911/middleman-sitemap'
+gem 'middleman-sitemap', git: 'https://github.com/westonganger/middleman-sitemap'
 gem 'middleman-sitemap-ping'
 gem 'middleman-robots' # https://github.com/yterajima/middleman-robots
 gem 'middleman-disqus', git: 'https://github.com/westonganger/middleman-disqus.git'
