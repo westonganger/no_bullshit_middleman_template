@@ -7,6 +7,9 @@ tmp/
 .similar.db
 node_modules/
 .yarn-error.log
+/vendor/cache/
 
 ### Keep build folder so that customer can deploy without build process
 #build/
+#docs/ ### build/ alternative for gh-pages
+#public/

@@ -1,11 +1,9 @@
 require 'slim'
 
-instance_eval do
-  File.read 'config/blog.rb'
-  File.read 'config/search.rb'
-  File.read 'config/proxy_pages.rb'
-  File.read 'config/deploy.rb'
-end
+eval File.read 'config/blog.rb'
+eval File.read 'config/search.rb'
+eval File.read 'config/proxy_pages.rb'
+eval File.read 'config/deploy.rb'
 
 FLAGS = {
   dev_speedup: false

@@ -30,10 +30,11 @@ The following additional configuration files are located in the `config/` folder
 - bin/setup
 - bundle exec middleman server
 
-## Deployment
+## Gitlab Pages Deployment
 
-- Configure settings in config/deploy.rb, by default deploys to Github pages
-- bin/deploy.sh OR use provided Github action
+- https://docs.gitlab.com/ee/user/project/pages/custom_domains_ssl_tls_certification/
+- Configure settings in config/deploy.rb, by default deploys to Gitlab pages
+- `bin/deploy.sh` OR use provided Gitlab job
 
 ## Credits
 

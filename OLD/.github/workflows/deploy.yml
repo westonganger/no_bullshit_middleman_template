@@ -10,15 +10,21 @@ name: Deploy
 
 on: 
   workflow_dispatch:
+  release:
+    type: [ published ]
+    branches: [ production ]
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-    - run: "GIT_BRANCH=${{github.event.ref}} $/bin/deploy.sh"
+    - uses: actions/checkout@v2
+    - uses: actions/setup-ruby@v1
+      with:
+        ruby-version: '2.7'
+    - run: "GIT_BRANCH=${{github.event.inputs.branch}} ./bin/deploy.sh"
       shell: bash
-
     # - name: Deploy via Webhook
     #   uses: distributhor/workflow-webhook
     #   with:
