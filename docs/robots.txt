@@ -1,4 +1,0 @@
-User-Agent: *
-Allow: /
-
-Sitemap: https://middleman-template.example.com/sitemap.xml
