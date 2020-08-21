@@ -4,4 +4,4 @@
 script_path=$( cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P )
 cd $script_path
 
-(bundle check || bundle install) && (yarn install --check-files || yarn install)
+bundle install --path vendor/cache && yarn install

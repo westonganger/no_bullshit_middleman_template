@@ -8,6 +8,7 @@ gem 'middleman', git: "https://github.com/middleman/middleman.git"
 gem 'slim'
 #gem 'bh'
 gem 'sexy_form'
+gem 'sassc', "~>2.1.0"
 
 gem 'middleman-deploy', git: "https://github.com/graygilmore/middleman-deploy.git"
 
@@ -23,7 +24,7 @@ gem 'middleman-sitemap', git: 'https://github.com/westonganger/middleman-sitemap
 gem 'middleman-sitemap-ping'
 gem 'middleman-robots' # https://github.com/yterajima/middleman-robots
 gem 'middleman-disqus', git: 'https://github.com/westonganger/middleman-disqus.git'
-gem 'middleman-search-gds', git: 'https://github.com/westonganger/middleman-search.git', branch: "patch-2"
+gem 'middleman-search-gds', git: 'https://github.com/westonganger/middleman-search.git', branch: "gds"
 gem 'middleman-simple-thumbnailer', git: 'https://github.com/westonganger/middleman-simple-thumbnailer.git'
 gem 'middleman-inline_svg'
 #gem 'middleman-protect-emails' # https://github.com/amsardesai/middleman-protect-emails

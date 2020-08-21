@@ -1,0 +1,31 @@
+### https://devops.cc.kagoshima-u.ac.jp/gitlab/help/user/project/pages/getting_started/pages_from_scratch.md
+### https://docs.gitlab.com/ee/ci/yaml/README.html
+
+image: ruby:2.7
+
+# workflow:
+#   rules:
+#     - if: '$CI_COMMIT_BRANCH'
+
+cache:
+  paths:
+  - vendor
+
+before_script:
+  - apt-get update -yqqq
+  - apt-get install -y nodejs
+
+test_build:
+  script:
+    - bin/build
+
+pages:
+  # rules:
+  #   - if: '$CI_COMMIT_BRANCH == "master"'
+  artifacts:
+    paths:
+      - public
+  only:
+  - production
+  script:
+  - bin/deploy
